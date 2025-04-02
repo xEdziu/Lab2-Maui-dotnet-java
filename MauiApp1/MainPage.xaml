@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.MainPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Source="dotnet_bot.png"
+                HeightRequest="185"
+                Aspect="AspectFit"
+                SemanticProperties.Description="dot net bot in a race car number eight" />
+
+            <!-- FORMULARZ DODAWANIA UŻYTKOWNIKA -->
+            <Label Text="Dodaj nowego użytkownika:" FontAttributes="Bold" />
+            <Entry x:Name="NameEntry" Placeholder="Imię" />
+            <Entry x:Name="EmailEntry" Placeholder="Email" />
+            <Button Text="Dodaj użytkownika" Clicked="OnAddUserClicked" 
+                    HorizontalOptions="Start"/>
+
+            <!-- LISTA UŻYTKOWNIKÓW Z POSTAMI -->
+            <Label Text="Lista użytkowników:" FontAttributes="Bold" Margin="0,20,0,0"/>
+            <CollectionView ItemsSource="{Binding Users}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" Margin="0,0,0,10">
+                            <Label Text="{Binding Name}" FontSize="18" />
+                            <Label Text="{Binding Email}" FontSize="14" />
+                            <Button Text="Usuń" Clicked="OnDeleteUserClicked" 
+                                    BackgroundColor="Red" WidthRequest="100"
+                                    HorizontalOptions="Start" Margin="0,10,0,10" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+        
+    </ScrollView>
+
+</ContentPage>
